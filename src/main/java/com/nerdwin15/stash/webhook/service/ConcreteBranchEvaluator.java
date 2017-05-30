@@ -31,13 +31,13 @@ public class ConcreteBranchEvaluator implements BranchEvaluator {
           public boolean apply(RefChange input) {
             // We only care about non-deleted branches
             return input.getType() != RefChangeType.DELETE
-                && input.getRefId().startsWith(REFS_HEADS);
+                && input.getRef().getId().startsWith(REFS_HEADS);
           }
         }), new Function<RefChange, String>() {
           @Override
           public String apply(RefChange input) {
             // Not 100% sure whether this is _just_ branch or is full ref?
-            return input.getRefId().replace(REFS_HEADS, "");
+            return input.getRef().getId().replace(REFS_HEADS, "");
           }
         });
   }
